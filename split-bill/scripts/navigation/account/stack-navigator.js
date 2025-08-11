@@ -1,0 +1,15 @@
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { AccountScreen } from "../../../utils/constants";
+import AccountDetails from "../../screens/account/AccountDetails";
+
+const Stack = createNativeStackNavigator();
+
+const AccountStackNavigator = ()=>{
+    return(
+        <Stack.Navigator>
+            <Stack.Screen name={AccountScreen.AccountDetails} component={AccountDetails}/>
+        </Stack.Navigator>
+    )
+}
+
+export default AccountStackNavigator;

@@ -19,6 +19,11 @@ export const AccountScreen = {
   AccountDetails: "AccountDetails",
 };
 
+export const AuthScreens = {
+  Login: "Login",
+  SignUp: "SignUp",
+};
+
 export const Tabs = {
   Groups: "Groups",
   Friends: "Friends",

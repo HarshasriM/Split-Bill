@@ -6,12 +6,22 @@ import FriendsStackNavigator from './friends/stack-navigator';
 import ActivityStackNavigator from './activity/stack-navigator';
 import AccountStackNavigator from './account/stack-navigator';
 import Icon from "react-native-vector-icons/Feather";
+import AuthStackNaviagtor from './auth/stack-navigator';
+import { useAuth } from '../context/AuthProvider';
 
 const Tab = createBottomTabNavigator();
 
 
 const MainNavigator = ()=>{
-   return ( 
+    const auth = useAuth();
+    if(!auth.isLoggedIn){
+        return(
+            <NavigationContainer>
+                <AuthStackNaviagtor/>
+            </NavigationContainer>
+        )
+    }
+    return ( 
         <NavigationContainer>
 
             <Tab.Navigator>

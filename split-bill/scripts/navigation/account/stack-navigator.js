@@ -1,5 +1,5 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { AccountScreen } from "../../../utils/constants";
+import { AccountScreen } from "../../utils/constants";
 import AccountDetails from "../../screens/account/AccountDetails";
 
 const Stack = createNativeStackNavigator();

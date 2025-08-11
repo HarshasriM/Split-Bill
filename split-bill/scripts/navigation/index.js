@@ -1,6 +1,6 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Tabs } from '../../utils/constants';
+import { Tabs } from '../utils/constants';
 import GroupStackNavigator from './groups/stack-navigator';
 import FriendsStackNavigator from './friends/stack-navigator';
 import ActivityStackNavigator from './activity/stack-navigator';

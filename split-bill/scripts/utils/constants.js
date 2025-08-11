@@ -24,6 +24,10 @@ export const AuthScreens = {
   SignUp: "SignUp",
 };
 
+export const DatabaseName = {
+  DatabaseName : "splits.db"
+}
+
 export const Tabs = {
   Groups: "Groups",
   Friends: "Friends",

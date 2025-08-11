@@ -1,5 +1,5 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { ActivityScreen } from "../../../utils/constants";
+import { ActivityScreen } from "../../utils/constants";
 import AllActivities from "../../screens/activity/AllActivities";
 
 

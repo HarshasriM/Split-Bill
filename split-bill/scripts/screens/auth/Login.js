@@ -1,12 +1,8 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import LoginComponent from '../../components/auth/LoginComponent';
 
 const Login = () => {
-  return (
-    <View>
-      <Text></Text>
-    </View>
-  );
+  return <LoginComponent/>
 }
 
 export default Login;

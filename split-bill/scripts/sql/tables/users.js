@@ -9,3 +9,6 @@ is_registered INTEGER DEFAULT 0
 );`;
 
 // alter commands, delete, index
+
+// export const alterTableUsers = `ALTER TABLE users ADD column passwprd TEXT NOT NULL`;
+// export const tableDefUsers =  `pragma table_info(users)`

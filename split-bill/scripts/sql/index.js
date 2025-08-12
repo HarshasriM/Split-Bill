@@ -1,8 +1,9 @@
 import Connection from "./connection";
 import { SessionTable } from "./tables/session";
 import { UsersTable } from "./tables/users";
-
-
+import { CreateActivitiesTable } from "./tables/activities";
+import { CreateGroupMembersTable } from "./tables/group-members";
+import { CreateGroupsTable } from "./tables/group";
 
 const getAllTables = async () => {
   try {
@@ -23,6 +24,9 @@ export const onInitDatabase = async ()=>{
         const db = await Connection.getConnection();
         await db.execAsync(UsersTable);
         await db.execAsync(SessionTable);
+        await db.execAsync(CreateGroupsTable);
+        await db.execAsync(CreateGroupMembersTable);
+        await db.execAsync(CreateActivitiesTable);
         await getAllTables();
         return;
     }

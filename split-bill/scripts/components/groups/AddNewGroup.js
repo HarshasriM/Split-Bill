@@ -9,18 +9,30 @@ import Icon from "react-native-vector-icons/MaterialIcons";
 
 
 const AddNewGroup = () => {
-  const {
-    user: { id },
-  } = useAuth();
+  const {user: { id },} = useAuth();
   const [groupName, setGroupName] = useState("");
   const nav = useNavigation();
+
+  const addNewGroup = async () => {
+    if (!groupName || groupName.trim() === "") return;
+
+    console.log("Group Name: ", groupName);
+    try {
+      const groupId = await createNewGroup(groupName, +id);
+      alert(`Group created with id: ${groupId}`);
+    } catch (error) {
+      console.log("Error occurred while addNewGroup: ", error);
+    }
+  };
+
+
   const SCREEN_OPTIONS = {
     headerShown: true,
     headerStyle:{
         color:"#8550b9ff"
     },
     headerRight: (props) => (
-      <Button {...props} mode="contained" onPress={()=>{alert("done")}}>
+      <Button {...props} mode="contained" onPress={addNewGroup}>
         Done
       </Button>
     ),

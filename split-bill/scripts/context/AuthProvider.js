@@ -1,8 +1,7 @@
-import { Children, createContext, useContext, useState } from "react";
+import { createContext, useContext,useEffect, useState } from "react";
 import { isStringValid } from "../utils/helper";
 import {createUser, getUserById} from "../sql/auth/user/index"
 import { createNewSession ,deleteSessions,getSession} from "../sql/auth/sessions/index";
-
 
 
 const AuthContext = createContext({
@@ -16,40 +15,40 @@ const AuthContext = createContext({
 export const useAuth = ()=>useContext(AuthContext);
 
 
-useEffect(() => {
-    async function checkSession() {
-      //get old session
-      const sessions = await getSession();
-      console.log("Prev Sessions: ", JSON.stringify(sessions));
 
-      //if no sessions just return
-      if (!sessions && sessions.length === 0) {
-        return;
-      }
-
-      //if session length > 0 delelte and return
-      if (sessions.length > 1) {
-        await deleteSessions();
-        return;
-      }
-
-      // if only one session existes find user using user_Id
-      const user = await getUserById(sessions[0].user_id);
-      if (!user) {
-        return;
-      }
-
-      setUser(user);
-      setIsLoggedIn(true);
-    }
-    checkSession();
-  }, []);
 
 const AuthProvider = ({children})=>{
     const [user,setUser] = useState(null);
     const [isLoggedIn,setIsLoggedIn] = useState(false);
 
+    useEffect(() => {
+    async function checkSession() {
+      //get old session
+        const sessions = await getSession();
+        console.log("Prev Sessions: ", JSON.stringify(sessions));
 
+        //if no sessions just return
+        if (!sessions && sessions.length === 0) {
+          return;
+        }
+
+        //if session length > 0 delelte and return
+        if (sessions.length > 1) {
+          await deleteSessions();
+          return;
+            }
+
+          // if only one session existes find user using user_Id
+          const user = await getUserById(sessions[0].user_id);
+          if (!user) {
+            return;
+          }
+
+          setUser(user);
+          setIsLoggedIn(true);
+        }
+        checkSession();
+    }, []);
     const login = async (id,password)=>{
       if (!isStringValid([password]) || !id || id === 0) {
       console.log("Id or Password Invalid");

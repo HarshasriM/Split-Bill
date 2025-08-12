@@ -1,11 +1,9 @@
-import React from 'react';
-import { View, Text } from 'react-native';
+
+import GroupContent from '../../components/groups/index';
 
 const AllGroups = () => {
   return (
-    <View>
-      <Text></Text>
-    </View>
+    <GroupContent/>
   );
 }
 

@@ -6,7 +6,7 @@ import { SQLiteProvider } from "expo-sqlite";
 import { onErrorIntialisingDatabase, onInitDatabase } from "./scripts/sql/index";
 import Fallback from "./scripts/screens/fallback/Fallback";
 import { DatabaseName } from "./scripts/utils/constants";
-
+import "react-native-gesture-handler"
 
 export default function App() {
   return (

@@ -6,7 +6,7 @@ import { Button,IconButton,TextInput } from 'react-native-paper';
 import { StyleSheet } from 'react-native';
 import { useAuth } from '../../context/AuthProvider';
 import Icon from "react-native-vector-icons/MaterialIcons";
-
+import {createNewGroup} from "../../sql/group/index.js"
 
 const AddNewGroup = () => {
   const {user: { id },} = useAuth();
@@ -18,7 +18,7 @@ const AddNewGroup = () => {
 
     console.log("Group Name: ", groupName);
     try {
-      const groupId = await createNewGroup(groupName, +id);
+      const groupId = await createNewGroup(groupName, Number(id));
       alert(`Group created with id: ${groupId}`);
     } catch (error) {
       console.log("Error occurred while addNewGroup: ", error);

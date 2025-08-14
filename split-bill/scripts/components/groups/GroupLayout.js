@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, StyleSheet} from 'react-native';
 import GroupAppBar from './GroupAppBar';
 
 const GroupLayout = ({children}) => {
@@ -7,9 +7,9 @@ const GroupLayout = ({children}) => {
     <View style={styles.container}>
       <GroupAppBar/>
       <Text style={styles.text}>All Groups</Text>
-      <ScrollView style={styles.container}>
+      <View style={styles.container}>
         {children}
-      </ScrollView>
+      </View>
     </View>
   );
 }
@@ -18,9 +18,12 @@ export default GroupLayout;
 
 const styles = StyleSheet.create({
     container:{
-        flex:1
+        flex:1,
     },
     text:{
-        fontWeight:"500",
+        fontWeight:700,
+        fontSize:25,
+        padding:10,
+        color:"#8550b9ff"
     }
 })

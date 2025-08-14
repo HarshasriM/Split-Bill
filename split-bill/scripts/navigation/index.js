@@ -24,25 +24,29 @@ const MainNavigator = ()=>{
     return ( 
         <NavigationContainer>
 
-            <Tab.Navigator screenOptions={{headerShown:false}}>
+            <Tab.Navigator screenOptions={{headerShown:false,tabBarActiveTintColor: "#8550b9ff",
+    tabBarInactiveTintColor: "#999"}}>
                 <Tab.Screen 
                     options={{
-                        tabBarIcon: (props) => <Icon {...props} name="users" size={20} />,
+                        tabBarIcon: (props) => <Icon {...props} name="users"  size={20} />,
                     }}
                     name={Tabs.Groups} component={GroupStackNavigator} 
                 />
                 <Tab.Screen 
                     options={{
+                       
                         tabBarIcon: (props) => <Icon {...props} name="user" size={20} />,
                     }}
                     name={Tabs.Friends} component={FriendsStackNavigator} />
                 <Tab.Screen 
                     options={{
-                        tabBarIcon: (props) => <Icon {...props} name="activity" size={20} />,
+                       
+                        tabBarIcon: (props) => <Icon {...props} name="activity"  size={20} />,
                     }}
                     name={Tabs.Activity} component={ActivityStackNavigator} />
                 <Tab.Screen 
                     options={{
+                        
                         tabBarIcon: (props) => <Icon {...props} name="package" size={20} />,
                     }}
                     name={Tabs.Account} component={AccountStackNavigator} />

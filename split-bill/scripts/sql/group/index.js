@@ -1,7 +1,7 @@
 import Connection from "../connection";
 import { CREATE_NEW_GROUP_QUERY } from "./queries";
 import { createGroupMembers } from "../group-member/index";
-
+import { registerUsersUnOffical } from "../auth/user/create-user-accounts";
 
 export const createNewGroup = async (group_name, creatorId) => {
   const db = await Connection.getConnection();
@@ -23,6 +23,27 @@ export const createNewGroup = async (group_name, creatorId) => {
     await db.execAsync("COMMIT");
 
     return groupId;
+  } catch (error) {
+    console.log("TXN Failed");
+    await db.execAsync("ROLLBACK"); // Revert Changes
+    console.log(error);
+    throw error;
+  }
+};
+
+
+export const createNewGroupMembersTransaction = async (contactIds, groupId) => {
+  const db = await Connection.getConnection();
+  try {
+    console.log("Starting TXN");
+    await db.execAsync("BEGIN");
+
+    const userIds = await registerUsersUnOffical(contactIds);
+    if (userIds.length > 0) {
+      await createGroupMembers(userIds, groupId, db);
+    }
+    console.log("Commiting TXN");
+    await db.execAsync("COMMIT");
   } catch (error) {
     console.log("TXN Failed");
     await db.execAsync("ROLLBACK"); // Revert Changes

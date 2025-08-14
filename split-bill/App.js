@@ -7,6 +7,7 @@ import { onErrorIntialisingDatabase, onInitDatabase } from "./scripts/sql/index"
 import Fallback from "./scripts/screens/fallback/Fallback";
 import { DatabaseName } from "./scripts/utils/constants";
 import "react-native-gesture-handler"
+import AppStateProvider from "./scripts/context/AppStateProvider";
 
 export default function App() {
   return (
@@ -15,7 +16,9 @@ export default function App() {
       <React.Suspense fallback={<Fallback />}>
         <SQLiteProvider databaseName={DatabaseName.DatabaseName} onInit={onInitDatabase} onError={onErrorIntialisingDatabase}>
           <AuthProvider>
-            <MainNavigator/>
+            <AppStateProvider>
+              <MainNavigator/>
+            </AppStateProvider>
           </AuthProvider>
         </SQLiteProvider>
       </React.Suspense>

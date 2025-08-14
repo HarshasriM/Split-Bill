@@ -8,12 +8,13 @@ import { GroupScreens } from "../../utils/constants";
 const GroupListRenderItem = ({group}) => {
 //   console.log("GROUP", group);
 
-//   const { setSelectedGroup } = useAppState();
+  const { setSelectedGroup } = useAppState();
   const nav = useNavigation();
 
   const navigateToGroupScreen = () => {
-    // setSelectedGroup({ id: group.id, name: group.group_name });
-    nav.navigate(GroupScreens.GroupItem,{group});
+    setSelectedGroup({ id: group.id, name: group.group_name });
+    nav.navigate(GroupScreens.GroupItem);
+    // nav.navigate(GroupScreens.GroupItem,{group});
   };
   return (
      <TouchableOpacity onPress={navigateToGroupScreen} style={styles.container}>

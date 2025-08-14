@@ -4,6 +4,9 @@ import { Dimensions } from 'react-native';
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import { useNavigation } from "@react-navigation/native";
 import { GroupScreens } from "../../utils/constants";
+import { useAppState } from '../../context/AppStateProvider';
+
+
 
 const GroupListRenderItem = ({group}) => {
 //   console.log("GROUP", group);

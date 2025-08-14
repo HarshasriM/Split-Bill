@@ -1,8 +1,6 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-import { useRoute
-
- } from '@react-navigation/native';
+import { useRoute} from '@react-navigation/native';
 
  /** Target
  * 1. Add new participants (select contacts, add those contacts in DB, unique mobile , unregisterd)

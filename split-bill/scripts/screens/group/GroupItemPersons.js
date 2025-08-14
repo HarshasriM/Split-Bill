@@ -33,7 +33,7 @@ const GroupItemPersons = () => {
   const nav = useNavigation();
   const [members, setMembers] = useState([]);
   const { selectedGroup } = useAppState();
-  console.log(selectedGroup);
+  //console.log(selectedGroup);
   useLayoutEffect(() => {
     getMembersOfGroup(+selectedGroup.id)
       .then(setMembers)

@@ -44,14 +44,28 @@ const SelectContacts = ({ selectedContacts, setSelectedContacts }) => {
   }, []);
   return (
     <View>
-      <Text>SelectContacts</Text>
+      <Text style={{fontSize:20,marginVertical:10,fontWeight:600}}>SelectContacts</Text>
       {contacts.length > 0 && (
         <MultiSelect
-          uniqueKey="id"
-          items={contacts}
-          onSelectedItemsChange={onItemsChange}
-          selectedItems={selectedContacts}
-        />
+        uniqueKey="id"
+        items={contacts}
+        onSelectedItemsChange={onItemsChange}
+        selectedItems={selectedContacts}
+        
+        // Theme color
+        selectedItemTextColor="#8550b9ff"
+        selectedItemIconColor="#8550b9ff"
+        submitButtonColor="#8550b9ff"
+        searchInputStyle={{ color: '#8550b9ff' ,caretColor: '#8550b9ff',}}
+        styleInputGroup={{
+          borderBottomWidth: 1,
+          borderBottomColor: '#8550b9ff',
+        }}
+        styleItemsContainer={{
+          backgroundColor: '#f8f4fc', // optional light background
+        }}
+      />
+
       )}
     </View>
   );

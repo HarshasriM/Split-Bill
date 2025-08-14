@@ -7,7 +7,6 @@ import GroupItemMain from "../../screens/group/GroupItemMain";
 import GroupItemPersons from "../../screens/group/GroupItemPersons";
 import AddGroupMembers from "../../screens/group/AddGroupMembers";
 
-
 const Stack = createNativeStackNavigator();
 const Tab = createMaterialTopTabNavigator();
 
@@ -40,7 +39,6 @@ const GroupItemNavigator = () => {
 };
 
 const GroupStackNavigator = ()=>{
-    const { selectedGroup:{name} } = useAppState();
     return (
         <Stack.Navigator screenOptions={{ headerShown: false }}>
             <Stack.Screen name={GroupScreens.AllGroups} component={AllGroups} />
@@ -49,14 +47,22 @@ const GroupStackNavigator = ()=>{
                 options={{
                 headerShadowVisible: false,
                 headerShown: true,
-                headerTitle:{name},
+                headerTitle:"",
                 headerStyle: {
                     backgroundColor:"#8550b9ff", 
                 },
                 headerTintColor: '#ffffff',
                 }}
                 name={GroupScreens.GroupItem} component={GroupItemNavigator} />
-            <Stack.Screen name={GroupScreens.AddGroupMembers} component={AddGroupMembers} />
+            <Stack.Screen 
+                options={{
+                  headerShown:true,
+                  headerStyle: {
+                    backgroundColor:"#8550b9ff", 
+                  },
+                  headerTintColor: '#ffffff',
+                }}
+                name={GroupScreens.AddGroupMembers} component={AddGroupMembers} />
         </Stack.Navigator>
     )
 }

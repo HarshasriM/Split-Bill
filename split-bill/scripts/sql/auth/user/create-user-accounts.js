@@ -8,7 +8,7 @@ const isUserAlreadyExistsInDatabase = async (phone) => {
   try {
     const db = await Connection.getConnection();
     const result = await db.getFirstAsync(GET_USER_BY_PHONE, phone);
-    console.log("isUserAlreadyExistsInDatabase", result);
+    //console.log("isUserAlreadyExistsInDatabase", result);
     return result;
   } catch (error) {
     console.log("Error while isUserAlreadyExistsInDatabase: ", error);
@@ -23,11 +23,11 @@ const getContactDetailsById = async (id) => {
       Contacts.Fields.Name,
     ]);
 
-    // contact
-    if ((!contact && !contact.name) || contact.phoneNumbers.length < 0) {
+
+    if ((!contact && !contact.name) || !contact.phoneNumbers ||contact.phoneNumbers.length < 0) {
       return null;
     }
-    console.log(contact);
+    //console.log(contact);
 
     return {
       name: contact.name,
@@ -51,10 +51,11 @@ export const registerUsersUnOffical = async (contactIds) => {
     }
 
     let user = await isUserAlreadyExistsInDatabase(contact.phone);
-    console.log("USER>>>", user);
+    //console.log("USER>>>", user);
 
     if (user) {
       console.log("User already exists");
+      return []
     } else {
       user = await createUser(
         contact.name,

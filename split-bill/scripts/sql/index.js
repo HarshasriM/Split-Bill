@@ -4,11 +4,10 @@ import { UsersTable } from "./tables/users";
 import { CreateActivitiesTable } from "./tables/activities";
 import { CreateGroupMembersTable } from "./tables/group-members";
 import { CreateGroupsTable } from "./tables/group";
-import { CreateActivitiesTable } from "./tables/activities";
 import { CreateExpenseSplitsTable } from "./tables/expense-splits";
 import { CreateExpensesTable } from "./tables/expenses";
 import { CreateFriendsTable } from "./tables/friends";
-
+import { CreatePaymentsTable } from "./tables/payments";
 
 const getAllTables = async () => {
   try {

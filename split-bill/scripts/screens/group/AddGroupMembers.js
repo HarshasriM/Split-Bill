@@ -13,10 +13,11 @@ const AddGroupMembers = () => {
 
   const addNewMembers = async () => {
     if (selectedContacts.length === 0) {
+      console.log("Adding members", selectedContacts);
       console.log("No contacts");
       return;
     }
-    console.log("Adding members", selectedContacts);
+    //console.log("Adding members", selectedContacts);
 
     try {
       await createNewGroupMembersTransaction(
@@ -29,21 +30,18 @@ const AddGroupMembers = () => {
     }
   };
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     nav.setOptions({
       title: selectedGroup?.name,
-      headerRight: (props) => (
-        <Button {...props} mode="text" onPress={addNewMembers.bind(this)}>
-          Done
-        </Button>
-      ),
     });
   }, []);
 
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Add New members </Text>
-      <Button onPress={addNewMembers}>Add contacts</Button>
+      <View style={styles.innerContainer}>
+        <Text style={styles.text}>Add New members </Text>
+        <Button style={styles.button} mode="contained" onPress={addNewMembers}>Add</Button>
+      </View>
       <SelectContacts
         selectedContacts={selectedContacts}
         setSelectedContacts={setSelectedContacts}
@@ -57,11 +55,20 @@ export default AddGroupMembers;
 const styles = StyleSheet.create({
   container: {
     width: Dimensions.get("window").width - 50,
-    marginHorizontal: "auto",
+    marginHorizontal:"auto",
     paddingTop: 20,
   },
-  text: {
-    fontSize: 20,
-    fontWeight: "500",
+  innerContainer:{
+    flexDirection:"row",
+    justifyContent:"space-between",
+    marginVertical:20
   },
+  text: {
+    fontSize: 25,
+    fontWeight:800,
+    color:"#8550b9ff"
+  },
+  button:{
+    width:90,
+  }
 });

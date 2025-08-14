@@ -14,7 +14,7 @@ export const createGroupMembers = async (arrOfUserId, groupId, db) => {
         groupId,
         id,
       ]);
-      console.log("New group member created! ", result);
+      //console.log("New group member created! ", result);
     }
   } catch (error) {
     console.log("Error occurred while creating new group member: ", error);
@@ -29,7 +29,7 @@ export const getGroupsOfUser = async (userId) => {
     const db = await Connection.getConnection();
 
     const result = await db.getAllAsync(GET_GROUPS_OF_USER, +userId);
-    console.log("Groups Of User:", result);
+    //console.log("Groups Of User:", result);
     return result;
   } catch (error) {
     console.log("Error in getGroupsOfUser: ", error);
@@ -42,7 +42,7 @@ export const getMembersOfGroup = async (groupId) => {
     const db = await Connection.getConnection();
 
     const result = await db.getAllAsync(GET_ALL_GROUP_MEMBERS_BY_ID, +groupId);
-    console.log("members Of group:", result);
+    //console.log("members Of group:", result);
     return result;
   } catch (error) {
     console.log("Error in getMembersOfGroup: ", error);

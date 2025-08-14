@@ -1,18 +1,59 @@
 import {createNativeStackNavigator} from "@react-navigation/native-stack";
+import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import { GroupScreens } from "../../utils/constants";
-import GroupItem from "../../screens/group/GroupItem";
 import GroupMembers from "../../screens/group/GroupMembers";
 import AddGroup from "../../screens/group/AddGroup";
 import AllGroups from "../../screens/group/AllGroups";
+import GroupItemMain from "../../screens/group/GroupItemMain";
+import GroupItemPersons from "../../screens/group/GroupItemPersons";
+
 
 const Stack = createNativeStackNavigator();
+const Tab = createMaterialTopTabNavigator();
+
+const GroupItemNavigator = () => {
+  return (
+    <Tab.Navigator 
+    screenOptions={{
+        tabBarActiveTintColor:"#8550b9ff",
+        tabBarInactiveTintColor:"gray",
+        tabBarLabelStyle:{fontSize:18,fontWeight:700},
+        tabBarIndicatorStyle:{backgroundColor:"#8550b9ff"},
+        headerShadowVisible:false
+        }} >
+      <Tab.Screen
+        options={{  
+          title: "Splits",
+          animationEnabled: true,
+        }}
+        name={GroupScreens.GroupItemMain}
+        component={GroupItemMain}
+      />
+      <Tab.Screen
+        options={{
+         title: "Members" }}
+        name={GroupScreens.GroupItemPersons}
+        component={GroupItemPersons}
+      />
+    </Tab.Navigator>
+  );
+};
 
 const GroupStackNavigator = ()=>{
     return (
         <Stack.Navigator screenOptions={{ headerShown: false }}>
             <Stack.Screen name={GroupScreens.AllGroups} component={AllGroups} />
             <Stack.Screen name={GroupScreens.AddGroup} component={AddGroup} />
-            <Stack.Screen name={GroupScreens.GroupItem} component={GroupItem} />
+            <Stack.Screen 
+                options={{
+                headerShadowVisible: false,
+                headerShown: true,
+                headerStyle: {
+                    backgroundColor:"#8550b9ff", 
+                },
+                headerTintColor: '#ffffff',
+                }}
+                name={GroupScreens.GroupItem} component={GroupItemNavigator} />
             <Stack.Screen name={GroupScreens.GroupMembers} component={GroupMembers} />
         </Stack.Navigator>
     )

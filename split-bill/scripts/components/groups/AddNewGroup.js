@@ -27,17 +27,13 @@ const AddNewGroup = () => {
 
 
   const SCREEN_OPTIONS = {
-    headerShown: true,
-    headerStyle:{
-        color:"#8550b9ff"
-    },
     headerRight: (props) => (
-      <Button {...props} mode="contained" onPress={addNewGroup}>
+      <Button {...props} mode="contained-tonal" onPress={addNewGroup}>
         Done
       </Button>
     ),
     headerLeft: (props) => (
-      <IconButton icon={"arrow-left"} {...props} onPress={nav.goBack} />
+      <IconButton icon={"arrow-left"} {...props} iconColor="#ffffff" onPress={nav.goBack} />
     ),
     headerShadowVisible: false,
   };

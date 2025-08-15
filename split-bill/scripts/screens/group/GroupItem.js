@@ -1,6 +1,7 @@
-import React from 'react';
-import { View, Text } from 'react-native';
-import { useRoute} from '@react-navigation/native';
+import React, { useLayoutEffect } from 'react';
+import { View} from 'react-native';
+import { useNavigation, useRoute} from '@react-navigation/native';
+
 
  /** Target
  * 1. Add new participants (select contacts, add those contacts in DB, unique mobile , unregisterd)
@@ -10,9 +11,7 @@ import { useRoute} from '@react-navigation/native';
 const GroupItem = () => {
   const {params:{group}} = useRoute();
   return (
-    <View>
-      <Text>{group.group_name}</Text>
-    </View>
+    <View></View>
   );
 }
 

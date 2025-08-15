@@ -1,4 +1,4 @@
-import { FlatList, StyleSheet, Text, View } from "react-native";
+import { Dimensions, FlatList, StyleSheet, Text, View } from "react-native";
 import React, { useLayoutEffect, useState } from "react";
 import { useAppState } from "../../context/AppStateProvider";
 import { getMembersOfGroup } from "../../sql/group-member/index";
@@ -49,10 +49,10 @@ const GroupItemPersons = () => {
     nav.navigate(GroupScreens.AddGroupMembers, { members });
   };
   return (
-    <View>
+    <View style={{ flex: 1 }}>
       <Button
         onPress={navigateToAddMembers}
-        style={{ width: 300, marginVertical: 10, marginHorizontal: "auto" }}
+        style={{ width: 300, marginVertical: 10, alignSelf: "center" }}
         mode="contained"
       >
         Add New Members
@@ -61,8 +61,11 @@ const GroupItemPersons = () => {
       <FlatList
         data={members}
         renderItem={(info) => <RenderItem data={info.item} />}
+        keyExtractor={(item, index) => index.toString()}
+        contentContainerStyle={{ paddingBottom:100 }}
       />
     </View>
+
   );
 };
 

@@ -5,7 +5,7 @@ import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import { useNavigation } from "@react-navigation/native";
 import { GroupScreens } from "../../utils/constants";
 import { useAppState } from '../../context/AppStateProvider';
-
+import { useLayoutEffect } from 'react';
 
 
 const GroupListRenderItem = ({group}) => {
@@ -16,9 +16,10 @@ const GroupListRenderItem = ({group}) => {
 
   const navigateToGroupScreen = () => {
     setSelectedGroup({ id: group.id, name: group.group_name });
-    nav.navigate(GroupScreens.GroupItem);
-    // nav.navigate(GroupScreens.GroupItem,{group});
+    // nav.navigate(GroupScreens.GroupItem);
+    nav.navigate(GroupScreens.GroupItem,{group});
   };
+  
   return (
      <TouchableOpacity onPress={navigateToGroupScreen} style={styles.container}>
       <View style={styles.groupContainer}>

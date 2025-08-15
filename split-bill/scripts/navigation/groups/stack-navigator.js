@@ -6,6 +6,7 @@ import AllGroups from "../../screens/group/AllGroups";
 import GroupItemMain from "../../screens/group/GroupItemMain";
 import GroupItemPersons from "../../screens/group/GroupItemPersons";
 import AddGroupMembers from "../../screens/group/AddGroupMembers";
+import GroupAddExpense from "../../screens/group/GroupAddExpense";
 
 const Stack = createNativeStackNavigator();
 const Tab = createMaterialTopTabNavigator();
@@ -42,12 +43,20 @@ const GroupStackNavigator = ()=>{
     return (
         <Stack.Navigator screenOptions={{ headerShown: false }}>
             <Stack.Screen name={GroupScreens.AllGroups} component={AllGroups} />
-            <Stack.Screen name={GroupScreens.AddGroup} component={AddGroup} />
+            <Stack.Screen 
+              options={{
+                headerShadowVisible: false,
+                headerShown: true,
+                headerStyle: {
+                    backgroundColor:"#8550b9ff", 
+                },
+                headerTintColor: '#ffffff',
+                }}
+              name={GroupScreens.AddGroup} component={AddGroup} />
             <Stack.Screen 
                 options={{
                 headerShadowVisible: false,
                 headerShown: true,
-                headerTitle:"",
                 headerStyle: {
                     backgroundColor:"#8550b9ff", 
                 },
@@ -63,6 +72,16 @@ const GroupStackNavigator = ()=>{
                   headerTintColor: '#ffffff',
                 }}
                 name={GroupScreens.AddGroupMembers} component={AddGroupMembers} />
+          <Stack.Screen
+                options={{ 
+                  headerShown: true, 
+                  headerShadowVisible: false,
+                  headerStyle: {
+                    backgroundColor:"#8550b9ff", 
+                  },
+                  headerTintColor: '#ffffff',
+                }}
+                name={GroupScreens.GroupAddExpense} component={GroupAddExpense}/>
         </Stack.Navigator>
     )
 }

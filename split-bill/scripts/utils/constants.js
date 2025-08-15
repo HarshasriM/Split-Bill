@@ -38,3 +38,8 @@ export const Tabs = {
   Activity: "Activity",
   Account: "Account",
 };
+
+export const PaymentStatus = {
+  PENDING: "PENDING",
+  COMPLETE: "COMPLETE",
+};

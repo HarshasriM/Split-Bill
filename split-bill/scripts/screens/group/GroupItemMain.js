@@ -1,24 +1,35 @@
-import React from 'react';
 import { StyleSheet, Text, View } from "react-native";
-import { useNavigation } from '@react-navigation/native';
+import React, { useLayoutEffect, useState } from "react";
 import { ActivityIndicator, FAB } from "react-native-paper";
+import { useNavigation } from "@react-navigation/native";
 import { GroupScreens } from "../../utils/constants";
-import { useState,useEffect } from 'react';
+import { getExpensesOfGroup } from "../../sql/expenses/index";
+import { useAppState } from "../../context/AppStateProvider";
+import GroupExpenseList from "../../components/groups/GroupExpenseList";
 
 const GroupItemMain = () => {
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [expenses, setExpenses] = useState([]);
+  const { selectedGroup } = useAppState();
   const nav = useNavigation();
-  
   const navigateToGroupExpense = () => {
     nav.navigate(GroupScreens.GroupAddExpense);
   };
 
-  return (
-    loading ? (
+  useLayoutEffect(() => {
+    getExpensesOfGroup(selectedGroup?.id)
+      .then(setExpenses)
+      .then(() => {
+        setLoading(false);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
+  return loading ? (
     <ActivityIndicator size={30} style={{ margin: "auto" }} />
   ) : (
     <View style={styles.container}>
-      {/* <GroupExpenseList expenses={expenses} /> */}
+      <GroupExpenseList expenses={expenses} />
       <FAB
         onPress={navigateToGroupExpense}
         style={styles.fab}
@@ -26,11 +37,11 @@ const GroupItemMain = () => {
         icon={"wallet-plus-outline"}
       />
     </View>
-   )
- )
-}
+  );
+};
 
 export default GroupItemMain;
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,

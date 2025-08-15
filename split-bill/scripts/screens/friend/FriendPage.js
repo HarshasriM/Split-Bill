@@ -4,6 +4,7 @@ import { useNavigation, useRoute } from "@react-navigation/native";
 import { ActivityIndicator} from "react-native-paper";
 import { getSettlementBetweenFriend } from "../../sql/payments/index";
 import GroupExpenseList from "../../components/groups/GroupExpenseList";
+import { FriendsScreens } from "../../utils/constants";
 
 const FriendPage = () => {
   const nav = useNavigation();
@@ -13,6 +14,10 @@ const FriendPage = () => {
   const {
     params: { users },
   } = useRoute();
+
+  const navigateToFriendExpense = () => {
+      nav.navigate(FriendsScreens.FriendAddExpense);
+    };
 
   useLayoutEffect(() => {
     getSettlementBetweenFriend(users[0].id, users[1].id)
@@ -33,8 +38,17 @@ const FriendPage = () => {
   ) : (
     <View style={{ flex: 1 }}>
       <GroupExpenseList expenses={expenses} isFriend={true} />
+      <FAB
+        onPress={navigateToFriendExpense}
+        style={styles.fab}
+        label="Add Expense"
+        icon={"wallet-plus-outline"}
+      />
     </View>
   );
 };
 
 export default FriendPage;
+const styles = StyleSheet.create({
+  fab: { position: "absolute", bottom: 15, right: 5 },
+});
